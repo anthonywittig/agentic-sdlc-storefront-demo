@@ -7,6 +7,6 @@
     "test": "node --test tests/"
   },
   "dependencies": {
-    "orbit-money": "github:temporal-sa/orbit-money#v1.0.0"
+    "orbit-money": "github:temporal-sa/orbit-money#v2.0.0"
   }
 }
