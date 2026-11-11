@@ -2,9 +2,9 @@
 // so it runs the same in the browser and under `node --test`. Money helpers come from the
 // orbit-money package (package.json for Node, the import map in index.html for the browser).
 
-import { formatMoney, roundCents } from "orbit-money";
+import { formatMoney, toCents } from "orbit-money";
 
-export { formatMoney };
+export { formatMoney, toCents };
 
 export const TAX_RATE = 0.08;
 
