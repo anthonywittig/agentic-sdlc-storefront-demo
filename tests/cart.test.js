@@ -18,7 +18,7 @@ test("subtotal sums price times quantity", () => {
 
 test("totals add 8% tax rounded to cents", () => {
   const cart = addItem(createCart(), mug);
-  assert.deepEqual(totals(cart), { subtotal: 16, tax: 1.28, total: 17.28 });
+  assert.deepEqual(totals(cart), { subtotal: 1600, tax: 128, total: 1728 });
 });
 
 test("removing a product drops it from the cart", () => {
