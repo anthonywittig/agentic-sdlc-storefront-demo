@@ -20,7 +20,7 @@ function renderProducts() {
     card.innerHTML = `
       <div class="product-emoji" aria-hidden="true">${product.emoji}</div>
       <h3>${product.name}</h3>
-      <p class="price">${formatMoney(product.price)}</p>
+      <p class="price">${formatMoney(toCents(product.price))}</p>
       <button type="button">Add to cart</button>`;
     card.querySelector("button").addEventListener("click", () => {
       cart = addItem(cart, product);
