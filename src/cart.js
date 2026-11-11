@@ -36,7 +36,7 @@ export function itemCount(cart) {
 }
 
 export function subtotal(cart) {
-  return roundCents(cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0));
+  return cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
 export function totals(cart) {
