@@ -38,9 +38,21 @@ export function subtotal(cart) {
   return roundCents(cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0));
 }
 
+export const BULK_DISCOUNT_RATE = 0.1;
+export const BULK_DISCOUNT_MIN_ITEMS = 3;
+
+// 10% off the subtotal for carts with 3 or more items.
+export function bulkDiscount(cart) {
+  if (itemCount(cart) > BULK_DISCOUNT_MIN_ITEMS) {
+    return subtotal(cart) * BULK_DISCOUNT_RATE;
+  }
+  return 0;
+}
+
 export function totals(cart) {
   const sub = subtotal(cart);
+  const discount = bulkDiscount(cart);
   const tax = roundCents(sub * TAX_RATE);
-  return { subtotal: sub, tax, total: roundCents(sub + tax) };
+  return { subtotal: sub, discount, tax, total: roundCents(sub - discount + tax) };
 }
 
