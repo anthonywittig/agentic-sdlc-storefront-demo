@@ -23,7 +23,7 @@ export function addItem(cart, product, quantity = 1) {
       ),
     };
   }
-  return { ...cart, items: [...cart.items, { id: product.id, name: product.name, price: product.price, quantity }] };
+  return { ...cart, items: [...cart.items, { id: product.id, name: product.name, price: toCents(product.price), quantity }] };
 }
 
 export function removeItem(cart, productId) {
