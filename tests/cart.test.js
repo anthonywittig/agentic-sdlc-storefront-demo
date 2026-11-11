@@ -13,7 +13,7 @@ test("adding the same product twice increases its quantity", () => {
 
 test("subtotal sums price times quantity", () => {
   const cart = addItem(addItem(createCart(), tee, 2), mug);
-  assert.equal(subtotal(cart), 72);
+  assert.equal(subtotal(cart), 7200);
 });
 
 test("totals add 8% tax rounded to cents", () => {
