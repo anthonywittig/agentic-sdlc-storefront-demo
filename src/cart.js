@@ -41,7 +41,7 @@ export function subtotal(cart) {
 
 export function totals(cart) {
   const sub = subtotal(cart);
-  const tax = roundCents(sub * TAX_RATE);
-  return { subtotal: sub, tax, total: roundCents(sub + tax) };
+  const tax = Math.round(sub * TAX_RATE);
+  return { subtotal: sub, tax, total: sub + tax };
 }
 
