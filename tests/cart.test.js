@@ -13,12 +13,22 @@ test("adding the same product twice increases its quantity", () => {
 
 test("subtotal sums price times quantity", () => {
   const cart = addItem(addItem(createCart(), tee, 2), mug);
-  assert.equal(subtotal(cart), 72);
+  assert.equal(subtotal(cart), 7200);
 });
 
 test("totals add 8% tax rounded to cents", () => {
   const cart = addItem(createCart(), mug);
-  assert.deepEqual(totals(cart), { subtotal: 16, tax: 1.28, total: 17.28 });
+  assert.deepEqual(totals(cart), { subtotal: 1600, tax: 128, total: 1728 });
+});
+
+test("adding a product stores its price in integer cents", () => {
+  const cart = addItem(createCart(), { id: "x", name: "X", price: 19.99 });
+  assert.equal(cart.items[0].price, 1999);
+});
+
+test("tax rounds fractional cents", () => {
+  const cart = addItem(createCart(), { id: "x", name: "X", price: 0.07 });
+  assert.deepEqual(totals(cart), { subtotal: 7, tax: 1, total: 8 });
 });
 
 test("removing a product drops it from the cart", () => {
