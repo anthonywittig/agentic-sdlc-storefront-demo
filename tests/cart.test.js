@@ -31,5 +31,14 @@ test("quantity must be positive", () => {
 });
 
 test("money is formatted with two decimals", () => {
-  assert.equal(formatMoney(5), "$5.00");
+  assert.equal(formatMoney(500), "$5.00");
+});
+
+test("formatMoney takes cents", () => {
+  assert.equal(formatMoney(28), "$0.28");
+});
+
+test("float dollar prices do not drift", () => {
+  const cart = addItem(addItem(createCart(), { id: "a", name: "A", price: 0.1 }), { id: "b", name: "B", price: 0.2 });
+  assert.equal(subtotal(cart), 30);
 });
