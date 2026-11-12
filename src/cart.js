@@ -43,8 +43,8 @@ export const BULK_DISCOUNT_MIN_ITEMS = 3;
 
 // 10% off the subtotal for carts with 3 or more items.
 export function bulkDiscount(cart) {
-  if (itemCount(cart) > BULK_DISCOUNT_MIN_ITEMS) {
-    return subtotal(cart) * BULK_DISCOUNT_RATE;
+  if (itemCount(cart) >= BULK_DISCOUNT_MIN_ITEMS) {
+    return roundCents(subtotal(cart) * BULK_DISCOUNT_RATE);
   }
   return 0;
 }
