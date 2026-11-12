@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { addItem, createCart, formatMoney, itemCount, removeItem, subtotal, totals } from "../src/cart.js";
+import { SHIPPING_FEE, addItem, createCart, formatMoney, freeShippingProgress, itemCount, removeItem, shipping, subtotal, totals } from "../src/cart.js";
 
 const tee = { id: "tee", name: "Tee", price: 28 };
 const mug = { id: "mug", name: "Mug", price: 16 };
