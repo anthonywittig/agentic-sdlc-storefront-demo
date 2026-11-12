@@ -29,7 +29,7 @@ test("empty cart has no shipping", () => {
 test("shipping is 6 below the threshold", () => {
   const cart = addItem(createCart(), tee);
   assert.equal(shipping(cart), SHIPPING_FEE);
-  assert.equal(totals(cart).total, 36 + 0 + 2.24 - 0 + 0 === 0 ? 0 : 28 + 6 + 2.24);
+  assert.equal(totals(cart).total, 36.24);
 });
 
 test("shipping is free at exactly 75", () => {
