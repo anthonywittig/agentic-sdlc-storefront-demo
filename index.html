@@ -23,10 +23,17 @@
       </section>
       <aside class="cart" aria-labelledby="cart-heading">
         <h2 id="cart-heading">Your cart</h2>
+        <div id="free-shipping" class="free-shipping" hidden>
+          <p id="free-shipping-message" class="free-shipping-message"></p>
+          <div id="free-shipping-bar" class="progress-track" role="progressbar" aria-labelledby="free-shipping-message" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="free-shipping-fill" class="progress-fill"></div>
+          </div>
+        </div>
         <p id="empty" class="muted">Your cart is empty.</p>
         <ul id="cart-items"></ul>
         <dl class="totals">
           <dt>Subtotal</dt><dd id="subtotal">$0.00</dd>
+          <dt>Shipping</dt><dd id="shipping">$0.00</dd>
           <dt>Tax</dt><dd id="tax">$0.00</dd>
           <dt class="total">Total</dt><dd id="total" class="total">$0.00</dd>
         </dl>
