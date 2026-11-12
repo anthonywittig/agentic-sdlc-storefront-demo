@@ -60,6 +60,13 @@ test("free shipping progress caps at 100", () => {
   assert.equal(freeShippingProgress(addItem(createCart(), pricey)).unlocked, true);
 });
 
+test("free shipping progress with a non-round remaining amount", () => {
+  const p = freeShippingProgress(addItem(createCart(), { id: "x", name: "X", price: 74.99 }));
+  assert.equal(p.remaining, 0.01);
+  assert.equal(p.unlocked, false);
+  assert.ok(p.percent < 100 && p.percent > 99.9);
+});
+
 test("removing a product drops it from the cart", () => {
   const cart = removeItem(addItem(addItem(createCart(), tee), mug), "tee");
   assert.deepEqual(cart.items.map((i) => i.id), ["mug"]);
