@@ -44,7 +44,10 @@ function renderCart() {
     });
     list.appendChild(row);
   }
-  const { subtotal, tax, total } = totals(cart);
+  const { subtotal, discount, tax, total } = totals(cart);
+  document.querySelector("#discount-label").hidden = discount <= 0;
+  document.querySelector("#discount").hidden = discount <= 0;
+  document.querySelector("#discount").textContent = `-${formatMoney(discount)}`;
   document.querySelector("#cart-count").textContent = String(itemCount(cart));
   document.querySelector("#subtotal").textContent = formatMoney(subtotal);
   document.querySelector("#tax").textContent = formatMoney(tax);
