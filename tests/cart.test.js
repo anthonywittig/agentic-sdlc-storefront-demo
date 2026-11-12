@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { addItem, createCart, formatMoney, itemCount, removeItem, subtotal, totals } from "../src/cart.js";
+import { addItem, createCart, formatMoney, itemCount, removeItem, subtotal, toCents, totals } from "../src/cart.js";
 
 const tee = { id: "tee", name: "Tee", price: 28 };
 const mug = { id: "mug", name: "Mug", price: 16 };
@@ -11,14 +11,19 @@ test("adding the same product twice increases its quantity", () => {
   assert.equal(itemCount(cart), 2);
 });
 
-test("subtotal sums price times quantity", () => {
+test("cart items store price in cents", () => {
+  const cart = addItem(createCart(), tee);
+  assert.equal(cart.items[0].price, 2800);
+});
+
+test("subtotal sums price times quantity in cents", () => {
   const cart = addItem(addItem(createCart(), tee, 2), mug);
-  assert.equal(subtotal(cart), 72);
+  assert.equal(subtotal(cart), 7200);
 });
 
 test("totals add 8% tax rounded to cents", () => {
   const cart = addItem(createCart(), mug);
-  assert.deepEqual(totals(cart), { subtotal: 16, tax: 1.28, total: 17.28 });
+  assert.deepEqual(totals(cart), { subtotal: 1600, tax: 128, total: 1728 });
 });
 
 test("removing a product drops it from the cart", () => {
@@ -31,5 +36,9 @@ test("quantity must be positive", () => {
 });
 
 test("money is formatted with two decimals", () => {
-  assert.equal(formatMoney(5), "$5.00");
+  assert.equal(formatMoney(500), "$5.00");
+});
+
+test("dollar prices convert to cents for formatting", () => {
+  assert.equal(formatMoney(toCents(28)), "$28.00");
 });
