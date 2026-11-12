@@ -38,9 +38,28 @@ export function subtotal(cart) {
   return roundCents(cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0));
 }
 
+export const FREE_SHIPPING_THRESHOLD = 75;
+export const SHIPPING_FEE = 6;
+
+export function shipping(sub) {
+  if (sub === 0 || sub >= FREE_SHIPPING_THRESHOLD) return 0;
+  return SHIPPING_FEE;
+}
+
 export function totals(cart) {
   const sub = subtotal(cart);
+  const ship = shipping(sub);
   const tax = roundCents(sub * TAX_RATE);
-  return { subtotal: sub, tax, total: roundCents(sub + tax) };
+  return { subtotal: sub, shipping: ship, tax, total: roundCents(sub + ship + tax) };
+}
+
+export function freeShippingProgress(cart) {
+  const sub = subtotal(cart);
+  const unlocked = sub >= FREE_SHIPPING_THRESHOLD;
+  return {
+    remaining: unlocked ? 0 : roundCents(FREE_SHIPPING_THRESHOLD - sub),
+    progress: Math.min(1, sub / FREE_SHIPPING_THRESHOLD),
+    unlocked,
+  };
 }
 
