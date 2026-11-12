@@ -25,8 +25,13 @@
         <h2 id="cart-heading">Your cart</h2>
         <p id="empty" class="muted">Your cart is empty.</p>
         <ul id="cart-items"></ul>
+        <div id="free-shipping" class="free-shipping" hidden>
+          <p id="free-shipping-message" class="free-shipping-message"></p>
+          <progress id="free-shipping-bar" max="100" value="0"></progress>
+        </div>
         <dl class="totals">
           <dt>Subtotal</dt><dd id="subtotal">$0.00</dd>
+          <dt>Shipping</dt><dd id="shipping">$0.00</dd>
           <dt>Tax</dt><dd id="tax">$0.00</dd>
           <dt class="total">Total</dt><dd id="total" class="total">$0.00</dd>
         </dl>
