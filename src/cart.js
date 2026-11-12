@@ -2,9 +2,11 @@
 // so it runs the same in the browser and under `node --test`. Money helpers come from the
 // orbit-money package (package.json for Node, the import map in index.html for the browser).
 
-import { formatMoney, roundCents } from "orbit-money";
+// Amounts inside the cart are integer cents; product prices (dollars) are converted in addItem.
 
-export { formatMoney };
+import { formatMoney, toCents } from "orbit-money";
+
+export { formatMoney, toCents };
 
 export const TAX_RATE = 0.08;
 
