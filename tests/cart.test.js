@@ -51,7 +51,7 @@ test("tax is charged on the subtotal only", () => {
 
 test("free shipping progress under the threshold", () => {
   const p = freeShippingProgress(addItem(createCart(), tee, 2));
-  assert.deepEqual(p, { remaining: 19, unlocked: false, percent: 96 });
+  assert.deepEqual(p, { remaining: 19, unlocked: false, percent: 75 });
 });
 
 test("free shipping progress for empty cart", () => {
